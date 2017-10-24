@@ -6,6 +6,9 @@
 
 @import 'init/init';
 
+// importing angular material icons
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -24,8 +27,12 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // Applying theme
 @include angular-material-theme($theme);
 
-retail-root {
+uwt-root {
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+body {
+  background-color: #f2f2f2;
 }
