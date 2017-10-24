@@ -32,6 +32,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/cdk@^2.0.0-beta.12":
+  version "2.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-2.0.0-beta.12.tgz#3a243cb62b93f4e039120ba70f900dc9e235622e"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cli@1.4.7":
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.4.7.tgz#56bc32db264b9e6666d7628c7d4018a02c23e4ff"
@@ -134,6 +140,12 @@
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-4.4.6.tgz#498ece95c5f6066403bf9fd3c5831af42b45618b"
 
+"@angular/material@^2.0.0-beta.12":
+  version "2.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.12.tgz#71b6d0b7b021891e5d0e3688c1d4bd78c7457f58"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@^4.2.4":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.4.6.tgz#4d3d9a6a7bf2cf3de4058a615ae059eff641fa36"
@@ -157,6 +169,20 @@
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.4.6.tgz#16787cbbf50bdc7e738123b19c32527f244e178d"
   dependencies:
     tsickle "^0.21.0"
+
+"@covalent/core@^1.0.0-beta.8-1":
+  version "1.0.0-beta.8-1"
+  resolved "https://registry.yarnpkg.com/@covalent/core/-/core-1.0.0-beta.8-1.tgz#18bf09f912cc02f39c1e578255cc42728da10426"
+  dependencies:
+    tslib "^1.7.1"
+
+"@ngrx/effects@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-4.1.0.tgz#a67f5abb71bdb2fea1fa9b751a4f38435674a6a8"
+
+"@ngrx/store@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-4.1.0.tgz#8c074cbc6197e259cd9492e85a76c3c67dbea173"
 
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
