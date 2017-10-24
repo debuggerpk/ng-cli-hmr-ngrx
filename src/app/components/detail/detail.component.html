@@ -1,0 +1,13 @@
+<mat-card layout="column" layout-margin layout-padding>
+  <div layout="row" *ngIf="data | async">
+    <div layout="column">
+      {{ data | async | json }}
+    </div>
+  </div>
+
+  <h1>
+    <a routerLink="/search">
+      BACK TO SEARCH
+    </a>
+  </h1>
+</mat-card>

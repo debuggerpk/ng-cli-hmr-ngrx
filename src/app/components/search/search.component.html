@@ -1,0 +1,26 @@
+<mat-card layout="column" layout-margin>
+  <form #searchForm="ngForm" layout="row" flex>
+    <mat-form-field flex>
+      <input matInput
+        name="queryString"
+        [(ngModel)]="queryString"
+        (ngModelChange)="onSearch($event)"
+        placeholder="Type for Live Search">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+  <mat-radio-group [(ngModel)]="searchOption" (change)="changeSearchOption($event)" style="margin-top: 16px;">
+    <mat-radio-button value="1">Complete</mat-radio-button>
+    <mat-radio-button value="2">ISO 2</mat-radio-button>
+    <mat-radio-button value="3">ISO 3</mat-radio-button>
+  </mat-radio-group>
+</mat-card>
+<mat-card layout="column" layout-margin>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let result of searchResults | async" routerLink='/country/{{ result.alpha2_code }}'>
+        <span flex>{{ result.name }}</span>
+        <span style="margin-right: 16px">{{ result.alpha2_code }} - {{ result.alpha3_code }}</span>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </mat-list-item>
+    </mat-nav-list>
+</mat-card>
