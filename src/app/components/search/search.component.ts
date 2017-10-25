@@ -12,26 +12,44 @@ import * as models from '../../models/results';
 })
 export class SearchComponent implements OnInit {
   // public searchOption: Observable<number>;
-  public searchOption = 1;
+  public searchOption = 'country';
   public queryString = '';
   public searchResults: Observable<models.ResultInteface[]>;
+  public error: Observable<string>;
+  public loading: Observable<boolean>;
+  public searchMessages: Observable<string[]>;
   // public queryString: Observable<string>;
 
   constructor(private store: Store<reducers.State>) {}
 
-  public changeSearchOption(option: number) {
-    console.log(option);
-  }
-
-  public onSearch($event: string) {
-    this.store.dispatch(new search.SearchCountry(this.queryString));
-    this.store.select(reducers.getSearchResults).subscribe(data => console.log(data));
+  public doSearch() {
+    /**
+     * This should not be here, it should be in effects
+     * We should have another vairable in state to keep the state of selected option.
+     */
+    if (this.queryString.length) {
+      switch (this.searchOption) {
+        case 'country':
+          this.store.dispatch(new search.SearchCountry(this.queryString));
+          break;
+        case 'iso2':
+          this.store.dispatch(new search.SearchCountryIso2(this.queryString));
+          break;
+        case 'iso3':
+          this.store.dispatch(new search.SearchCountryIso3(this.queryString));
+          break;
+        default:
+          this.store.dispatch(new search.SearchCountry(this.queryString));
+          break;
+      }
+    }
   }
 
   ngOnInit() {
     this.searchResults = this.store.select(reducers.getSearchResults);
-    this.store.select(reducers.getSearchResults).subscribe(data => console.log(data));
-    // this.store.select(reducers.getResults).subscribe(data => console.log(data));
+    this.loading = this.store.select(reducers.getSearchLoading);
+    this.error = this.store.select(reducers.getSearchError);
+    this.searchMessages = this.store.select(reducers.getSearchMessages);
   }
 
 }

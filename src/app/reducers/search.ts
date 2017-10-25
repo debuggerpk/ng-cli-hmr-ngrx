@@ -1,3 +1,4 @@
+import { SearchState } from './search';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { storeLogger } from 'ngrx-store-logger';
 
@@ -19,6 +20,7 @@ export interface SearchState {
   messages: string[];
   results: ResultInteface[];
   loading: boolean;
+  error: string;
 }
 
 export interface State {
@@ -29,23 +31,41 @@ export const intialState: SearchState = {
   queryString: '',
   messages: [],
   results: [],
-  loading: false
+  loading: false,
+  error: null
 };
 
 export function searchReducers(state = intialState, action: search.Actions): SearchState {
   switch (action.type) {
     case search.SEARCH_COUNTRY:
+      state = { ...state };
       state.queryString = action.payload;
+      state.loading = true;
+      state.error = null;
       return state;
     case search.SEARCH_COUNTRY_ISO2:
+      state = { ...state };
+      state.queryString = action.payload;
+      state.loading = true;
+      state.error = null;
       return state;
     case search.SEARCH_COUNTRY_ISO3:
+      state = { ...state };
+      state.queryString = action.payload;
+      state.loading = true;
+      state.error = null;
+      return state;
+    case search.SEARCH_COUNTRY_ERROR:
+      state = { ...state };
+      state.error = action.payload;
+      state.loading = false;
       return state;
     case search.SEARCH_COUNTRY_COMPLETE:
-      const newState = { ...state };
-      newState.messages = action.payload.RestResponse.messages;
-      newState.results = action.payload.RestResponse.result;
-      return newState;
+      state = { ...state };
+      state.messages = action.payload.RestResponse.messages;
+      state.results = action.payload.RestResponse.result;
+      state.loading = false;
+      return state;
     default:
       return state;
   }
@@ -69,9 +89,30 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 ? [logger]
   : [];
 
-export const getResults = (state: SearchState) => state.results;
+// getting observable from store
 export const getSearchState = createFeatureSelector<SearchState>('search');
+
+// the result observable
+export const getResults = (state: SearchState) => state.results;
 export const getSearchResults = createSelector(
   getSearchState,
   getResults
+);
+
+export const getMessages = (state: SearchState) => state.messages;
+export const getSearchMessages = createSelector(
+  getSearchState,
+  getMessages
+);
+
+export const getLoading = (state: SearchState) => state.loading;
+export const getSearchLoading = createSelector(
+  getSearchState,
+  getLoading
+);
+
+export const getError = (state: SearchState) => state.error;
+export const getSearchError = createSelector(
+  getSearchState,
+  getError
 );

@@ -1,3 +1,4 @@
+import { SearchCountryIso2, SEARCH_COUNTRY_ISO3 } from './../actions/search';
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -28,7 +29,6 @@ export class SearchEffects {
   search$ = this._action
     .ofType<search.SearchCountry>(search.SEARCH_COUNTRY)
     .map(action => {
-      console.log(action.payload);
       return action.payload;
     })
     .switchMap(query => {
@@ -37,12 +37,72 @@ export class SearchEffects {
       }
       const nextSearch$ = this._action.ofType(search.SEARCH_COUNTRY).skip(1);
 
-      console.log(query);
       return this._searchService
         .search(query)
         .takeUntil(nextSearch$)
         .map((result: RestResponseInterface) => {
           return new search.SearchCountryComplete(result);
         });
+    })
+    .catch(error => {
+      return Observable.of(new search.SearchError('Undocumented API Error'));
+    });
+
+  @Effect()
+  searchIso2$ = this._action
+    .ofType<search.SearchCountryIso2>(search.SEARCH_COUNTRY_ISO2)
+    .map(action => {
+      console.log(action.payload);
+      return action.payload;
+    })
+    .switchMap(query => {
+      if (query === '' && query.length !== 2) {
+        return empty();
+      }
+
+      if (query.length !== 2) {
+        return Observable.of(new search.SearchError('For Iso2Code, the query string must be 2 letters!'));
+      }
+
+      const nextSearch$ = this._action.ofType(search.SEARCH_COUNTRY_ISO2).skip(1);
+
+      return this._searchService
+        .iso2code(query)
+        .takeUntil(nextSearch$)
+        .map((result: RestResponseInterface) => {
+          return new search.SearchCountryComplete(result);
+        });
+    })
+    .catch(error => {
+      return Observable.of(new search.SearchError('Undocumented API Error'));
+    });
+
+  @Effect()
+  searchIso3$ = this._action
+    .ofType<search.SearchCountryIso3>(search.SEARCH_COUNTRY_ISO3)
+    .map(action => {
+      return action.payload;
+    })
+    .switchMap(query => {
+      if (query === '') {
+        return empty();
+      }
+
+      if (query.length !== 3) {
+        return Observable.of(new search.SearchError('For Iso3Code, the query string must be 3 letters!'));
+      }
+
+      const nextSearch$ = this._action.ofType(search.SEARCH_COUNTRY_ISO3).skip(1);
+
+      console.log(query);
+      return this._searchService
+        .iso3code(query)
+        .takeUntil(nextSearch$)
+        .map((result: RestResponseInterface) => {
+          return new search.SearchCountryComplete(result);
+        });
+    })
+    .catch(error => {
+      return Observable.of(new search.SearchError('Undocumented API Error'));
     });
 }

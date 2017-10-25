@@ -45,6 +45,7 @@ export class CountrySearchService {
 
   public iso2code(queryString: string): Observable<RestResponseInterface> {
     const url = this.baseURL + 'get/iso2code/' + queryString;
+    console.log(url);
 
     return this._http.get(url)
       .map(res => res.json());
