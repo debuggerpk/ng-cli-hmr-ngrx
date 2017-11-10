@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/8.7.0/bin/node /usr/local/Cellar/yarn/1.2.1/libexec/bin/yarn.js add @ngrx/actions
+  /usr/local/Cellar/node/8.7.0/bin/node /usr/local/Cellar/yarn/1.2.1/libexec/bin/yarn.js upgrade-interactive
 
 PATH: 
   /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/ant/bin:/usr/local/opt/maven/bin:/usr/local/opt/gradle/bin:/Users/yousuf/Library/Android/sdk/tools:/Users/yousuf/Library/Android/sdk/platform-tools:/Users/yousuf/Library/Android/sdk/build-tools/26.0.1:/Users/yousuf/.rbenv/shims:/Users/yousuf/.pyenv/shims:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -42,7 +42,11 @@ npm manifest:
       "@covalent/core": "^1.0.0-beta.8-1",
       "@ngrx/effects": "^4.1.0",
       "@ngrx/store": "^4.1.0",
+      "@ngrx/store-devtools": "^4.0.0",
       "core-js": "^2.4.1",
+      "lodash": "^4.17.4",
+      "ngrx-store-freeze": "^0.2.0",
+      "ngrx-store-logger": "^0.2.0",
       "rxjs": "^5.4.2",
       "zone.js": "^0.8.14"
     },
@@ -254,6 +258,10 @@ Lockfile:
   "@ngrx/effects@^4.1.0":
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-4.1.0.tgz#a67f5abb71bdb2fea1fa9b751a4f38435674a6a8"
+  
+  "@ngrx/store-devtools@^4.0.0":
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-4.0.0.tgz#b79c24773217df7fd9735ad21f9cbf2533c96e04"
   
   "@ngrx/store@^4.1.0":
     version "4.1.0"
@@ -1471,6 +1479,10 @@ Lockfile:
   deep-extend@~0.4.0:
     version "0.4.2"
     resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
+  
+  deep-freeze-strict@^1.1.1:
+    version "1.1.1"
+    resolved "https://registry.yarnpkg.com/deep-freeze-strict/-/deep-freeze-strict-1.1.1.tgz#77d0583ca24a69be4bbd9ac2fae415d55523e5b0"
   
   default-require-extensions@^1.0.0:
     version "1.0.0"
@@ -3449,6 +3461,16 @@ Lockfile:
   negotiator@0.6.1:
     version "0.6.1"
     resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+  
+  ngrx-store-freeze@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/ngrx-store-freeze/-/ngrx-store-freeze-0.2.0.tgz#74c231947bbe1938af722f6a72624dc69788d39f"
+    dependencies:
+      deep-freeze-strict "^1.1.1"
+  
+  ngrx-store-logger@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/ngrx-store-logger/-/ngrx-store-logger-0.2.0.tgz#9bef9447bc91d8e35a2aa6ae1c5a57ea51036694"
   
   no-case@^2.2.0:
     version "2.3.2"
@@ -5850,14 +5872,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.18.tgz#8cecb3977fcd1b3090562ff4570e2847e752b48d"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@ngrx%2factions: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.2.1/libexec/lib/cli.js:62027:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.2.1/libexec/lib/cli.js:123011:22)
-      at emitTwo (events.js:125:13)
-      at Request.emit (events.js:213:7)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.2.1/libexec/lib/cli.js:123994:10)
-      at emitOne (events.js:115:13)
-      at Request.emit (events.js:210:7)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.2.1/libexec/lib/cli.js:123914:12)
-      at Object.onceWrapper (events.js:314:30)
-      at emitNone (events.js:110:20)
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at errnoException (dns.js:53:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:95:26)
